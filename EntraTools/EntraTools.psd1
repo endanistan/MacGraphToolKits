@@ -6,7 +6,7 @@
     Author               = 'Daniel Berg'
     Description          = 'Toolkit to create Entra ID users, generate OTP or add user group membership'
 
-    PowerShellVersion    = '7.0'
+    PowerShellVersion    = '7.4.0'
 
     # Exporterade funktioner
     FunctionsToExport    = @(
@@ -34,3 +34,4 @@
         }
     }
 }
+
