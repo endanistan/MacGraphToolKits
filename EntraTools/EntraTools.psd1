@@ -8,7 +8,6 @@
 
     PowerShellVersion    = '7.4.0'
 
-    # Exporterade funktioner
     FunctionsToExport    = @(
         'New-UserPassword',
         'New-EntraUser',
@@ -34,4 +33,5 @@
         }
     }
 }
+
 
