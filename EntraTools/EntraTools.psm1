@@ -1,5 +1,3 @@
-﻿Export-ModuleMember -Function New-EntraUser, Add-UserGroups, New-UserPassword
-
 function New-UserPassword {
     $Adjectives = @("Ferocious", "Sabertoothed", "Maneating", "Bloodthirsty", "Vengeful", "Merciless", "Wrathful", "Hellbound", "Soulharvesting", "Crazed", "Blessed", "Flesheating")
     $Nouns = @("Goldfish", "Froglet", "Bumblebee", "Pig", "Capybara", "Toad", "Rabbit", "Lamb", "Crab", "Shrimp", "Starfish")
@@ -92,10 +90,13 @@ function Add-UserGroups {
             }
 
             try {
-                Get-MgGroupMemberByRef -GroupId $AddToGroup -DirectoryObjectId $AddThisUser -ErrorAction Stop | Out-Null
-                Write-Output "$UPN has been added to $Group"
+                if (Get-MgGroupMember -GroupId $AddToGroup -filter "Id eq '$AddThisUser'" -ErrorAction Stop) {
+					Write-Output "$UPN has been added to $Group"
+				} else {
+					Write-Output "$UPN has not been added to $Group"
+				}
             } catch {
-                Write-Output "$UPN has not been added to $Group"
+                Write-Output "Failed to retrieve validation of output"
             }
 
         } else {
@@ -104,3 +105,5 @@ function Add-UserGroups {
         }
     }
 }
+
+Export-ModuleMember -Function New-EntraUser, Add-UserGroups, New-UserPassword
